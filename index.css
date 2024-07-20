@@ -1,94 +1,54 @@
-.mainbox {
-	font-size:15px;
-	margin: 5% 2% ;
-	background: black;
-	color:white;
-	width: 320px;
-	height: 440px;
-	border-radius:2em;
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	opacity: 0.9;
-	box-shadow:3px 3px 10px black;
+@import "compass/css3";
+
+// hay frand, play with these vars.
+$loader-style: double; 
+$loader-width: 0.5em;
+$loader-color: #ecf0f1;
+$loader-size: 150px;
+$loader-speed: 1s;
+
+$body-bg: #e74c3c;
+
+// colors by http://flatuicolors.com/
+
+body {
+  background-color: $body-bg;
+}
+.loader {
+  width: 1em;
+  height: 1em;
+  font-size: $loader-size;
+  position: relative;
+  @media (max-width: $loader-size * 1.5), (max-height: $loader-size * 1.5) {
+    font-size: $loader-size/2;
+  }
+  &:before, &:after {
+    content: "";
+    top: 0;
+    display: block;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    border-width: $loader-width;
+    border-style: $loader-style;
+    border-color: transparent;
+    box-sizing: border-box;
+    border-radius: 1em;
+    animation: spin $loader-speed infinite;
+  }
+  &:after {
+    left: 0;
+    border-left-color: $loader-color;
+  }
+  &:before {
+    right: 0;
+    border-right-color: $loader-color;
+    animation-delay: $loader-speed/-4;
+  }
 }
 
-.mainbox:after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  background-image: url("arrow-left.png");
-  background-size: 20px 20px;
-  background-position: center;
-}
-
-.box {
-	font-size:15px;
-	margin: 5% 2% ;
-	background: black;
-	color:white;
-	width: 320px;
-	height: 440px;
-	border-radius:2em;
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	opacity: 0.9;
-	box-shadow:3px 3px 10px black;
-}
-
-.box1, .box2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.span1, .span2, .span3, .span4 {
-  width: 50%;
-  height: 50%;
-  display: inline-block;
-  position: absolute;
-}
-
-.span1 {
-  clip-path: polygon(0 92%, 100% 50%, 0 8%);
-  background-color: #fffb00;
-  top: 120px;
-  left: 0;
-}
-
-.span2 {
-  clip-path: polygon(100% 92%, 0 50%, 100% 8%);
-  background-color: #ff4fa1;
-  top: 120px;
-  right: 0;
-}
-
-.span3 {
-  clip-path: polygon(50% 0%, 8% 100%, 92% 100%);
-  background-color: #ffaa00;
-  bottom: 0;
-  left: 120px;
-}
-
-.span4 {
-  clip-path: polygon(50% 100%, 92% 0, 8% 0);
-  background-color: #22ff00;
-  top: 0;
-  left: 120px;
-}
-
-.counter {
-  font-size: 24px;
-  font-weight: bold;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+@keyframes spin {
+  from {
+    transform: rotate(360deg);
+  }
 }
